@@ -1,0 +1,101 @@
+## Esegui accesso
+POST http://localhost:3001/api/sessions 
+content-type: application/json
+
+{
+    "email": "user1@gmail.com",
+    "password": "password"
+}
+###
+
+## Controlla sessione corrente (dovresti essere autenticato dopo il login)
+GET http://localhost:3001/api/sessions/current
+Accept: application/json
+
+###
+
+## Logout
+DELETE http://localhost:3001/api/sessions/current
+
+###
+
+## Ottieni tutte le carte (inizializza le carte per una nuova partita)
+GET http://localhost:3001/api/cards
+Accept: application/json
+
+###
+
+## Ottieni una carta specifica tramite ID (ID valido)
+GET http://localhost:3001/api/cards/2
+Accept: application/json
+
+###
+
+## Ottieni una carta specifica tramite ID (ID inesistente)
+GET http://localhost:3001/api/cards/9999
+Accept: application/json
+
+###
+
+## Test: Ottieni carte prima di un numero con una descrizione (valido)
+GET http://localhost:3001/api/cards/before/5/Arrivi%20in%20aula%20e%20scopri%20che%20la%20lezione%20%C3%A8%20online.
+Accept: application/json
+
+###
+
+## Test: Ottieni carte prima di un numero con una descrizione (numero non valido)
+GET http://localhost:3001/api/cards/before/9999/example-description
+Accept: application/json
+
+###
+
+## Test: Ottieni carte prima di un numero con una descrizione (descrizione inesistente)
+GET http://localhost:3001/api/cards/before/5/non-existent-description
+Accept: application/json
+
+###
+
+## Test: Ottieni carte dopo un numero con una descrizione (valido)
+GET http://localhost:3001/api/cards/after/2/Il%20professore%20ti%20riconosce%20e%20ti%20interroga.
+Accept: application/json
+
+###
+
+## Test: Ottieni carte dopo un numero con una descrizione (numero non valido)
+GET http://localhost:3001/api/cards/after/9999/example-description
+Accept: application/json
+
+###
+
+## Test: Ottieni carte dopo un numero con una descrizione (descrizione inesistente)
+GET http://localhost:3001/api/cards/after/2/non-existent-description
+Accept: application/json
+
+###
+
+## Test: Ottieni carte tra due numeri con una descrizione (valido)
+GET http://localhost:3001/api/cards/between/1/10/Coda%20di%20mezz%E2%80%99ora%20alla%20mensa.
+Accept: application/json
+
+###
+
+## Test: Ottieni carte tra due numeri con una descrizione (intervallo non valido)
+GET http://localhost:3001/api/cards/between/100/200/example-description
+Accept: application/json
+
+###
+
+## Test: Ottieni carte tra due numeri con una descrizione (descrizione inesistente)
+GET http://localhost:3001/api/cards/between/1/10/non-existent-description
+Accept: application/json
+
+###
+
+## Test: Ottieni una carta casuale (actualcards = 1,2,3)
+GET http://localhost:3001/api/cards/random/1,2,3
+Accept: application/json
+
+###
+
+
+
